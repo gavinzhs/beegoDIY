@@ -15,6 +15,7 @@ type Context struct {
 	//    Input          *BeegoInput
 	//    Output         *BeegoOutput
 	Request        *http.Request
+    Params  map[string]string
 	ResponseWriter http.ResponseWriter
 	_xsrf_token    string
 }
@@ -71,7 +72,7 @@ func (p *ControllerRegistor) Add(pattern string, c ControllerInterface) {
 	p.routers = append(p.routers, route)
 }
 
-type StaticDir map[string]string
+var StaticDir map[string]string
 
 func (app *App) SetStaticPath(url string, path string) *App {
 	StaticDir[url] = path

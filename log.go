@@ -5,7 +5,6 @@ import (
 	"os"
 )
 
-// Log levels to control the logging output.
 const (
 	LevelTrace = iota
 	LevelDebug
