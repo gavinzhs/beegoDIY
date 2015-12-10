@@ -15,9 +15,9 @@ type Context struct {
 	//    Input          *BeegoInput
 	//    Output         *BeegoOutput
 	Request        *http.Request
-    Params  map[string]string
+	Params         map[string]string
 	ResponseWriter http.ResponseWriter
-	_xsrf_token    string
+	//	_xsrf_token    string
 }
 
 // Redirect does redirection to localurl with http header status code.
@@ -81,6 +81,7 @@ func (app *App) SetStaticPath(url string, path string) *App {
 
 var AutoRender = true
 var RecoverPanic = false
+var ViewsPath = "public"
 
 // AutoRoute
 func (p *ControllerRegistor) ServeHTTP(w http.ResponseWriter, r *http.Request) {
