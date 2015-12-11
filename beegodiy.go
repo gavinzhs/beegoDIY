@@ -37,6 +37,10 @@ type ControllerRegistor struct {
 	Application *App
 }
 
+func NewControllerRegistor() *ControllerRegistor{
+    return &ControllerRegistor{routers : []*controllerInfo{}}
+}
+
 func (p *ControllerRegistor) Add(pattern string, c ControllerInterface) {
 	parts := strings.Split(pattern, "/")
 	j := 0
@@ -48,9 +52,9 @@ func (p *ControllerRegistor) Add(pattern string, c ControllerInterface) {
 			// similar to expressjs: ‘/user/:id([0-9]+)’
 			if index := strings.Index(part, "("); index != -1 {
 				expr = part[index:]
-				part = part[:index]
+				part = part[1:index]
 			}
-			params[j] = part
+			params[j] = part[1:]
 			parts[i] = expr
 			j++
 		}
@@ -79,7 +83,7 @@ func (app *App) SetStaticPath(url string, path string) *App {
 	return app
 }
 
-var AutoRender = true
+var AutoRender = false
 var RecoverPanic = false
 var ViewsPath = "public"
 
